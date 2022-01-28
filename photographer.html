@@ -1,36 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" />
-    </header>
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-    </main>
-    <div id="contact_modal">
+	<head>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/png" href="assets/favicon.png" />
+		<link
+			href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Fisheye - photographe</title>
+	</head>
+	<body>
+		<header>
+			<img src="assets/images/logo.png" alt="logo fishey" class="logo" />
+		</header>
+		<main id="main">
+			<div class="photograph-header">
+				<button class="contact_button" onclick="displayModal()">
+					Contactez-moi
+				</button>
+			</div>
+		</main>
+		<div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </header>
-				<form>
+					<h2>Contactez-moi</h2>
+					<img src="assets/icons/close.svg" onclick="closeModal()" />
+				</header>
+				<form
+					id="form"
+					name="reserve"
+					action="index.html"
+					method="get"
+					onsubmit="return validate();"
+				>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="first">Prénom</label><br />
+						<input
+							class="text-control"
+							type="text"
+							id="first"
+							name="first"
+						/><br />
+						<div id="first-error-msg"></div>
 					</div>
-          <button class="contact_button">Envoyer</button>
+					<div class="formData">
+						<label for="last">Nom</label><br />
+						<input
+							class="text-control"
+							type="text"
+							id="last"
+							name="last"
+						/><br />
+					</div>
+					<div id="last-error-msg"></div>
+					<div class="formData">
+						<label for="email">E-mail</label><br />
+						<input
+							class="text-control"
+							type="email"
+							id="email"
+							name="email"
+						/><br />
+					</div>
+					<div id="email-error-msg"></div>
+					<button class="contact_button" type="submit" class="btn-submit">
+						Envoyer
+					</button>
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
-  </body>
+		<script src="scripts/pages/photographer.js"></script>
+		<script src="scripts/utils/contactForm.js"></script>
+	</body>
 </html>
