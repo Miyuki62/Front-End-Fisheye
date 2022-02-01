@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-	const { name, portrait, city, country, tagline, price } = data;
+	const { name, id, portrait, city, country, tagline, price } = data;
 
 	const picture = `assets/photographers/${portrait}`;
 
@@ -16,6 +16,13 @@ function photographerFactory(data) {
 		p1.textContent = tagline;
 		const p2 = document.createElement("p");
 		p2.textContent = price + "€/jour";
+		const lien = document.createElement("a");
+		lien.setAttribute("id", id);
+		lien.setAttribute("href", "photographer.html?id=" + id);
+		lien.setAttribute(
+			"aria-label",
+			"Lien pour Aller sur la page personnelle de l'artiste " + name
+		);
 		article.appendChild(lien);
 		lien.appendChild(img);
 		lien.appendChild(h2);
@@ -24,5 +31,5 @@ function photographerFactory(data) {
 		article.appendChild(p2);
 		return article;
 	}
-	return { name, portrait, city, country, tagline, price, getUserCardDOM };
+	return { name, id, portrait, city, country, tagline, price, getUserCardDOM };
 }
