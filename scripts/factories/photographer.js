@@ -18,7 +18,7 @@ function photographerFactory(data) {
 		p2.textContent = price + "€/jour";
 		const lien = document.createElement("a");
 		lien.setAttribute("id", id);
-		lien.setAttribute("href", "photographer.html?id=" + id);
+		lien.setAttribute("href", "photographer.html?id=" + id + "&name=" + name);
 		lien.setAttribute(
 			"aria-label",
 			"Lien pour Aller sur la page personnelle de l'artiste " + name

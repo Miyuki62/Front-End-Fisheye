@@ -1,3 +1,5 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css");
+
 #contact_modal {
 	display: none;
 }
@@ -24,6 +26,36 @@
 }
 
 .photograph-header article img {
+	height: 200px;
+	width: 200px;
+}
+.photograph-media {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 50px;
+}
+
+.photograph-media article {
+	justify-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.photograph-media article p {
+	color: #d3573c;
+	font-size: 36px;
+}
+
+.photograph-media article img {
+	height: 200px;
+	width: 200px;
+}
+.photograph-media article video {
 	height: 200px;
 	width: 200px;
 }

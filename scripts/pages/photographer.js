@@ -8,12 +8,12 @@ async function getPhotographers() {
 		console.log(error);
 	}
 }
-
+//profil des photograph
 async function displayData(photographers) {
 	const photographersHeader = document.querySelector(".photograph-header");
 	const photographersimg = document.querySelector(".photograph-image");
+	//recupere l'id de l'url
 	let url_str = document.URL;
-
 	let url = new URL(url_str);
 	let search_params = url.searchParams;
 	let profilid = search_params.get("id");
@@ -26,6 +26,22 @@ async function displayData(photographers) {
 		const photographerModelimg = profilFactory(photographer, profilid);
 		const userCardDOM2 = photographerModelimg.getUserCardDOM2();
 		photographersHeader.appendChild(userCardDOM2);
+	});
+}
+
+//photo des photograph
+async function displayPhoto(media) {
+	const photographersMedia = document.querySelector(".photograph-media");
+	let url_str = document.URL;
+
+	let url = new URL(url_str);
+	let search_params = url.searchParams;
+	let profilid = search_params.get("id");
+	let name = search_params.get("name");
+	media.forEach((media) => {
+		const photoMedia = mediaFactory(media, profilid, name);
+		const PhotoCardDOM = photoMedia.getPhotoCardDOM();
+		photographersMedia.appendChild(PhotoCardDOM);
 	});
 }
 
@@ -48,11 +64,13 @@ function removeclass(classname) {
 function removeid(id) {
 	document.getElementById(id).remove();
 }
+
 async function init() {
 	// Récupère les datas des photographes
 	const { photographers } = await getPhotographers();
-	console.log(photographers);
+	const { media } = await getPhotographers();
 	displayData(photographers);
+	displayPhoto(media);
 	//surprime les article en trop
 	removeclass("supp");
 }
