@@ -1,11 +1,31 @@
 #contact_modal {
 	display: none;
 }
+.bground {
+	display: none;
+}
 
 .photograph-header {
 	background-color: #fafafa;
 	height: 300px;
 	margin: 0 100px;
+}
+.photograph-header article {
+	justify-self: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.photograph-header article h2 {
+	color: #d3573c;
+	font-size: 36px;
+}
+
+.photograph-header article img {
+	height: 200px;
+	width: 200px;
 }
 
 .contact_button {
