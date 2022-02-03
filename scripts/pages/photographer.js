@@ -32,12 +32,30 @@ async function displayData(photographers) {
 //photo des photograph
 async function displayPhoto(media) {
 	const photographersMedia = document.querySelector(".photograph-media");
-	let url_str = document.URL;
+	var sort = document.querySelector("select");
 
+	let url_str = document.URL;
 	let url = new URL(url_str);
 	let search_params = url.searchParams;
 	let profilid = search_params.get("id");
 	let name = search_params.get("name");
+
+	if (sort.options[0].selected === true) {
+		media.sort(sortByProperty("likes"));
+		function sortByProperty(property) {
+			return function (a, b) {
+				if (a[property] > b[property]) return -1;
+				else if (a[property] < b[property]) return 1;
+
+				return 0;
+			};
+		}
+	} else if (sort.options[1].selected === true) {
+		media.sort((a, b) => a.date.localeCompare(b.date));
+	} else if (sort.options[2].selected === true) {
+		media.sort((a, b) => a.title.localeCompare(b.title));
+	}
+
 	media.forEach((media) => {
 		const photoMedia = mediaFactory(media, profilid, name);
 		const PhotoCardDOM = photoMedia.getPhotoCardDOM();
