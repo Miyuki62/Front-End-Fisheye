@@ -59,7 +59,7 @@ function profilFactory(data, profilid) {
 	};
 }
 
-function mediaFactory(data, profilid, name) {
+function mediaFactory(data, profilid, name, i) {
 	//gestion des profil
 	const { id, photographerId, title, image, video, likes, date, price } = data;
 
@@ -87,6 +87,7 @@ function mediaFactory(data, profilid, name) {
 				vid.setAttribute("alt", name);
 				vid.setAttribute("src", videos);
 				vid.setAttribute("type", "video/mp4");
+				vid.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
 				const titles = document.createElement("p");
 				titles.textContent = title;
 				const like = document.createElement("i");
@@ -103,6 +104,7 @@ function mediaFactory(data, profilid, name) {
 				const img = document.createElement("img");
 				img.setAttribute("alt", name);
 				img.setAttribute("src", picture);
+				img.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
 				const titles = document.createElement("p");
 				titles.textContent = title;
 				const like = document.createElement("i");
@@ -122,6 +124,31 @@ function mediaFactory(data, profilid, name) {
 			return article;
 		}
 	}
+
+	function getLighboxDOM() {
+		let filename = image;
+		let extension = getExtension(filename);
+		//check l'extension pour verifier que c'est une video
+		if (extension == undefined) {
+			const div = document.createElement("div");
+			const vid = document.createElement("video");
+			div.setAttribute("class", "mySlides");
+			vid.setAttribute("alt", name);
+			vid.setAttribute("src", videos);
+			vid.setAttribute("type", "video/mp4");
+			div.appendChild(vid);
+			return div;
+		} else {
+			const div = document.createElement("div");
+			const img = document.createElement("img");
+			div.setAttribute("class", "mySlides");
+			img.setAttribute("alt", name);
+			img.setAttribute("src", picture);
+			div.appendChild(img);
+			return div;
+		}
+	}
+
 	return {
 		id,
 		photographerId,
@@ -132,5 +159,6 @@ function mediaFactory(data, profilid, name) {
 		date,
 		price,
 		getPhotoCardDOM,
+		getLighboxDOM,
 	};
 }

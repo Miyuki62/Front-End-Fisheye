@@ -19,19 +19,22 @@ async function displayData(photographers) {
 	let profilid = search_params.get("id");
 
 	photographers.forEach((photographer) => {
-		const photographerModel = profilFactory(photographer, profilid);
-		const userCardDOM = photographerModel.getUserCardDOM();
-		photographersHeader.appendChild(userCardDOM);
+		if (photographer.id == profilid) {
+			const photographerModel = profilFactory(photographer, profilid);
+			const userCardDOM = photographerModel.getUserCardDOM();
+			photographersHeader.appendChild(userCardDOM);
 
-		const photographerModelimg = profilFactory(photographer, profilid);
-		const userCardDOM2 = photographerModelimg.getUserCardDOM2();
-		photographersHeader.appendChild(userCardDOM2);
+			const photographerModelimg = profilFactory(photographer, profilid);
+			const userCardDOM2 = photographerModelimg.getUserCardDOM2();
+			photographersHeader.appendChild(userCardDOM2);
+		}
 	});
 }
 
 //photo des photograph
 async function displayPhoto(media) {
 	const photographersMedia = document.querySelector(".photograph-media");
+	const imgmodalcontent = document.querySelector(".imgmodal-content");
 	var sort = document.querySelector("select");
 
 	let url_str = document.URL;
@@ -39,6 +42,7 @@ async function displayPhoto(media) {
 	let search_params = url.searchParams;
 	let profilid = search_params.get("id");
 	let name = search_params.get("name");
+	let i = 1;
 
 	if (sort.options[0].selected === true) {
 		media.sort(sortByProperty("likes"));
@@ -57,9 +61,14 @@ async function displayPhoto(media) {
 	}
 
 	media.forEach((media) => {
-		const photoMedia = mediaFactory(media, profilid, name);
-		const PhotoCardDOM = photoMedia.getPhotoCardDOM();
-		photographersMedia.appendChild(PhotoCardDOM);
+		if (media.photographerId == profilid) {
+			const photoMedia = mediaFactory(media, profilid, name, i);
+			i++;
+			const PhotoCardDOM = photoMedia.getPhotoCardDOM();
+			photographersMedia.appendChild(PhotoCardDOM);
+			const PhotoshowDOM = photoMedia.getLighboxDOM();
+			imgmodalcontent.appendChild(PhotoshowDOM);
+		}
 	});
 }
 
