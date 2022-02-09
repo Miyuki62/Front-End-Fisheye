@@ -17,6 +17,9 @@ h1 {
 	color: #901c1c;
 	margin-right: 100px;
 }
+h3 {
+	color: #901c1c;
+}
 
 .logo {
 	height: 50px;
@@ -31,10 +34,10 @@ h1 {
 }
 
 .photographer_section article {
-	justify-self: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	justify-self: center;
 	flex-direction: column;
 }
 
@@ -43,7 +46,27 @@ h1 {
 	font-size: 36px;
 }
 
+.photographer_section article a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	justify-self: center;
+	flex-direction: column;
+}
+
 .photographer_section article img {
 	height: 200px;
 	width: 200px;
+	border-radius: 50%;
+}
+.photographer_section article h3 {
+	margin-top: -0.5em;
+	font-size: 1.5em;
+}
+.photographer_section article p {
+	margin-top: -0.5em;
+	font-size: 1em;
+}
+.pricePhotographer {
+	color: #525252;
 }

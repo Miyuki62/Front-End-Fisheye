@@ -10,7 +10,13 @@ async function getPhotographers() {
 }
 //profil des photograph
 async function displayData(photographers) {
-	const photographersHeader = document.querySelector(".photograph-header");
+	const photographersHeaderleft = document.querySelector(
+		".photograph-header-flexbox-left"
+	);
+	const photographersHeaderright = document.querySelector(
+		".photograph-header-flexbox-right"
+	);
+
 	const photographersimg = document.querySelector(".photograph-image");
 	//recupere l'id de l'url
 	let url_str = document.URL;
@@ -22,11 +28,11 @@ async function displayData(photographers) {
 		if (photographer.id == profilid) {
 			const photographerModel = profilFactory(photographer, profilid);
 			const userCardDOM = photographerModel.getUserCardDOM();
-			photographersHeader.appendChild(userCardDOM);
+			photographersHeaderleft.appendChild(userCardDOM);
 
 			const photographerModelimg = profilFactory(photographer, profilid);
 			const userCardDOM2 = photographerModelimg.getUserCardDOM2();
-			photographersHeader.appendChild(userCardDOM2);
+			photographersHeaderright.appendChild(userCardDOM2);
 		}
 	});
 }

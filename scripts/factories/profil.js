@@ -10,20 +10,29 @@ function profilFactory(data, profilid) {
 			//regarde si oui il les ajoute au document
 			const article = document.createElement("article");
 			const h2 = document.createElement("h2");
-			h2.textContent = name;
-			const h1 = document.createElement("h1");
-			h1.textContent = city + ", " + country;
+			const h3 = document.createElement("h3");
 			const p1 = document.createElement("p");
+			//
+			article.setAttribute("id", "infoPhotographer");
+			//
+			h2.textContent = name;
+			//
+			h3.textContent = city + ", " + country;
+			//
 			p1.textContent = tagline;
+			//
 			article.appendChild(h2);
-			article.appendChild(h1);
+			article.appendChild(h3);
 			article.appendChild(p1);
+			//
 			return article;
 		} else {
 			//regarde si non il ajoute un article en display none pour eviter les erreur
 			const article = document.createElement("article");
+			//
 			article.setAttribute("style", "display:none");
 			article.setAttribute("class", "supp");
+			//
 			return article;
 		}
 	}
@@ -32,17 +41,24 @@ function profilFactory(data, profilid) {
 		//regarde si l'id correspond a celui de la page
 		if (id == profilid) {
 			//regarde si oui il les ajoute au document
-			const article = document.createElement("article");
+			const Div = document.createElement("Div");
 			const img = document.createElement("img");
+			//
+			Div.setAttribute("id", "PhotoProfilPhotographer");
+			//
 			img.setAttribute("alt", name);
 			img.setAttribute("src", picture);
-			article.appendChild(img);
-			return article;
+			//
+			Div.appendChild(img);
+			//
+			return Div;
 		} else {
 			//regarde si non il ajoute un article en display none pour eviter les erreur
 			const article = document.createElement("article");
+			//
 			article.setAttribute("style", "display:none");
 			article.setAttribute("class", "supp");
+			//
 			return article;
 		}
 	}
@@ -84,43 +100,71 @@ function mediaFactory(data, profilid, name, i) {
 				//si oui on change la methode de creation
 				const article = document.createElement("article");
 				const vid = document.createElement("video");
+				const a = document.createElement("a");
+				//
 				vid.setAttribute("alt", name);
 				vid.setAttribute("src", videos);
 				vid.setAttribute("type", "video/mp4");
 				vid.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
+				vid.setAttribute("class", "mediaimg");
+				//
 				const titles = document.createElement("p");
 				titles.textContent = title;
+				//
 				const like = document.createElement("i");
 				like.textContent = likes;
 				like.setAttribute("class", "fas fa-heart");
 				like.setAttribute("aria-label", "likes");
-				article.appendChild(vid);
+				//
+				a.setAttribute("href", "#");
+				a.setAttribute("onClick", "return false;");
+				//
+				article.appendChild(a);
+				a.appendChild(vid);
 				article.appendChild(titles);
 				article.appendChild(like);
+				//
 				return article;
 			} else {
 				//regarde si oui il les ajoute au document
 				const article = document.createElement("article");
+				const a = document.createElement("a");
 				const img = document.createElement("img");
+				const div = document.createElement("div");
+				const titles = document.createElement("p");
+				const like = document.createElement("i");
+				//
+				a.setAttribute("href", "#");
+				a.setAttribute("onClick", "return false;");
+				//
 				img.setAttribute("alt", name);
 				img.setAttribute("src", picture);
 				img.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
-				const titles = document.createElement("p");
+				img.setAttribute("class", "mediaimg");
+				//
+				div.setAttribute("class", "titlepriceflex");
+				//
 				titles.textContent = title;
-				const like = document.createElement("i");
+				//
 				like.textContent = likes;
 				like.setAttribute("class", "fas fa-heart");
 				like.setAttribute("aria-label", "likes");
-				article.appendChild(img);
-				article.appendChild(titles);
-				article.appendChild(like);
+				//
+				article.appendChild(a);
+				a.appendChild(img);
+				article.appendChild(div);
+				div.appendChild(titles);
+				div.appendChild(like);
+				//
 				return article;
 			}
 		} else {
 			//regarde si non il ajoute un article en display none pour eviter les erreur
 			const article = document.createElement("article");
+			//
 			article.setAttribute("style", "display:none");
 			article.setAttribute("class", "supp");
+			//
 			return article;
 		}
 	}
@@ -132,19 +176,25 @@ function mediaFactory(data, profilid, name, i) {
 		if (extension == undefined) {
 			const div = document.createElement("div");
 			const vid = document.createElement("video");
+			//
 			div.setAttribute("class", "mySlides");
 			vid.setAttribute("alt", name);
 			vid.setAttribute("src", videos);
 			vid.setAttribute("type", "video/mp4");
+			//
 			div.appendChild(vid);
 			return div;
 		} else {
 			const div = document.createElement("div");
 			const img = document.createElement("img");
+			//
 			div.setAttribute("class", "mySlides");
+			//
 			img.setAttribute("alt", name);
 			img.setAttribute("src", picture);
+			//
 			div.appendChild(img);
+			//
 			return div;
 		}
 	}
