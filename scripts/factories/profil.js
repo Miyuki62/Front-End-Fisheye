@@ -14,6 +14,7 @@ function profilFactory(data, profilid) {
 			const p1 = document.createElement("p");
 			//
 			article.setAttribute("id", "infoPhotographer");
+			article.setAttribute("tabindex", "0");
 			//
 			h2.textContent = name;
 			//
@@ -45,6 +46,7 @@ function profilFactory(data, profilid) {
 			const img = document.createElement("img");
 			//
 			Div.setAttribute("id", "PhotoProfilPhotographer");
+			Div.setAttribute("tabindex", "0");
 			//
 			img.setAttribute("alt", name);
 			img.setAttribute("src", picture);
@@ -100,27 +102,28 @@ function mediaFactory(data, profilid, name, i) {
 				//si oui on change la methode de creation
 				const article = document.createElement("article");
 				const vid = document.createElement("video");
-				const a = document.createElement("a");
+				const titles = document.createElement("p");
+				const like = document.createElement("i");
+				//const a = document.createElement("a");
 				//
-				vid.setAttribute("alt", name);
+				vid.setAttribute("title", title);
 				vid.setAttribute("src", videos);
 				vid.setAttribute("type", "video/mp4");
 				vid.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
 				vid.setAttribute("class", "mediaimg");
+				vid.setAttribute("aria-label", "lien vers " + title);
 				//
-				const titles = document.createElement("p");
 				titles.textContent = title;
 				//
-				const like = document.createElement("i");
 				like.textContent = likes;
 				like.setAttribute("class", "fas fa-heart");
 				like.setAttribute("aria-label", "likes");
 				//
-				a.setAttribute("href", "#");
-				a.setAttribute("onClick", "return false;");
+				//a.setAttribute("href", "#");
+				//a.setAttribute("onClick", "return false;");
 				//
-				article.appendChild(a);
-				a.appendChild(vid);
+				//article.appendChild(a);
+				article.appendChild(vid);
 				article.appendChild(titles);
 				article.appendChild(like);
 				//
@@ -137,7 +140,7 @@ function mediaFactory(data, profilid, name, i) {
 				a.setAttribute("href", "#");
 				a.setAttribute("onClick", "return false;");
 				//
-				img.setAttribute("alt", name);
+				img.setAttribute("alt", title);
 				img.setAttribute("src", picture);
 				img.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
 				img.setAttribute("class", "mediaimg");
@@ -176,24 +179,33 @@ function mediaFactory(data, profilid, name, i) {
 		if (extension == undefined) {
 			const div = document.createElement("div");
 			const vid = document.createElement("video");
+			const alt = document.createElement("p");
 			//
 			div.setAttribute("class", "mySlides");
-			vid.setAttribute("alt", name);
+			vid.setAttribute("alt", title);
 			vid.setAttribute("src", videos);
 			vid.setAttribute("type", "video/mp4");
 			//
+			alt.textContent = title;
+			//
 			div.appendChild(vid);
+			div.appendChild(alt);
+			//
 			return div;
 		} else {
 			const div = document.createElement("div");
 			const img = document.createElement("img");
+			const alt = document.createElement("p");
 			//
 			div.setAttribute("class", "mySlides");
 			//
-			img.setAttribute("alt", name);
+			img.setAttribute("title", title);
 			img.setAttribute("src", picture);
 			//
+			alt.textContent = title;
+			//
 			div.appendChild(img);
+			div.appendChild(alt);
 			//
 			return div;
 		}
