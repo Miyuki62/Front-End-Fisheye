@@ -21,7 +21,7 @@ function photographerFactory(data) {
 		//
 		p1.textContent = tagline;
 		//
-		p2.textContent = price + "€/jour";
+		p2.textContent = price + "€ / jour";
 		p2.setAttribute("class", "pricePhotographer");
 		//
 		lien.setAttribute("id", id);

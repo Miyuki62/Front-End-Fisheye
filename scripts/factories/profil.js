@@ -1,6 +1,6 @@
 function profilFactory(data, profilid) {
 	//gestion des profil
-	const { name, id, portrait, city, country, tagline } = data;
+	const { name, id, portrait, city, country, tagline, price } = data;
 
 	const picture = `assets/photographers/${portrait}`;
 	//info principal
@@ -64,6 +64,19 @@ function profilFactory(data, profilid) {
 			return article;
 		}
 	}
+	function getpriceCardDOM() {
+		//regarde si l'id correspond a celui de la page
+		if (id == profilid) {
+			const span = document.createElement("span");
+			const pricet = document.createElement("p");
+			//
+			pricet.textContent = price + "€ / jour ";
+			//
+			span.appendChild(pricet);
+			//
+			return span;
+		}
+	}
 
 	return {
 		name,
@@ -72,12 +85,14 @@ function profilFactory(data, profilid) {
 		city,
 		country,
 		tagline,
+		price,
 		getUserCardDOM,
 		getUserCardDOM2,
+		getpriceCardDOM,
 	};
 }
 
-function mediaFactory(data, profilid, name, i) {
+function mediaFactory(data, profilid, name, i, numLikes) {
 	//gestion des profil
 	const { id, photographerId, title, image, video, likes, date, price } = data;
 
@@ -102,8 +117,11 @@ function mediaFactory(data, profilid, name, i) {
 				//si oui on change la methode de creation
 				const article = document.createElement("article");
 				const vid = document.createElement("video");
+				const div = document.createElement("div");
 				const titles = document.createElement("p");
+				const likeflex = document.createElement("div");
 				const like = document.createElement("i");
+				const likeplacement = document.createElement("span");
 				//const a = document.createElement("a");
 				//
 				vid.setAttribute("title", title);
@@ -113,19 +131,30 @@ function mediaFactory(data, profilid, name, i) {
 				vid.setAttribute("class", "mediaimg");
 				vid.setAttribute("aria-label", "lien vers " + title);
 				//
+				div.setAttribute("class", "titlepriceflex");
+				//
 				titles.textContent = title;
 				//
+				likeflex.setAttribute("class", "likeflex");
+				//
 				like.textContent = likes;
-				like.setAttribute("class", "fas fa-heart");
 				like.setAttribute("aria-label", "likes");
+				like.setAttribute("class", "likeadd");
+				like.setAttribute("id", i);
+				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
+				//
+				likeplacement.setAttribute("class", "fas fa-heart");
 				//
 				//a.setAttribute("href", "#");
 				//a.setAttribute("onClick", "return false;");
 				//
 				//article.appendChild(a);
 				article.appendChild(vid);
-				article.appendChild(titles);
-				article.appendChild(like);
+				article.appendChild(div);
+				div.appendChild(titles);
+				div.appendChild(likeflex);
+				likeflex.appendChild(like);
+				likeflex.appendChild(likeplacement);
 				//
 				return article;
 			} else {
@@ -135,7 +164,9 @@ function mediaFactory(data, profilid, name, i) {
 				const img = document.createElement("img");
 				const div = document.createElement("div");
 				const titles = document.createElement("p");
+				const likeflex = document.createElement("div");
 				const like = document.createElement("i");
+				const likeplacement = document.createElement("span");
 				//
 				a.setAttribute("href", "#");
 				a.setAttribute("onClick", "return false;");
@@ -149,15 +180,25 @@ function mediaFactory(data, profilid, name, i) {
 				//
 				titles.textContent = title;
 				//
+				like.setAttribute("class", "likeadd");
+				//
+				likeflex.setAttribute("class", "likeflex");
+				//
 				like.textContent = likes;
-				like.setAttribute("class", "fas fa-heart");
 				like.setAttribute("aria-label", "likes");
+				like.setAttribute("class", "likeadd");
+				like.setAttribute("id", i);
+				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
+				//
+				likeplacement.setAttribute("class", "fas fa-heart");
 				//
 				article.appendChild(a);
 				a.appendChild(img);
 				article.appendChild(div);
 				div.appendChild(titles);
-				div.appendChild(like);
+				div.appendChild(likeflex);
+				likeflex.appendChild(like);
+				likeflex.appendChild(likeplacement);
 				//
 				return article;
 			}
@@ -211,6 +252,33 @@ function mediaFactory(data, profilid, name, i) {
 		}
 	}
 
+	function gettotalLikes() {
+		//
+		if (photographerId == profilid) {
+			const div = document.createElement("div");
+			const conteurflex = document.createElement("div");
+			const like = document.createElement("i");
+			const likeplacement = document.createElement("span");
+			//
+			conteurflex.setAttribute("class", "conteurflex");
+			//
+			like.textContent = numLikes;
+			likeplacement.setAttribute("class", "fas fa-heart");
+			like.setAttribute("aria-label", "likes");
+			like.setAttribute("class", "totallikecounter");
+			//
+			div.appendChild(conteurflex);
+			conteurflex.appendChild(like);
+			conteurflex.appendChild(likeplacement);
+			//
+			return div;
+		}
+	}
+
+	function addorremoveLikes() {
+		ddd;
+	}
+
 	return {
 		id,
 		photographerId,
@@ -222,5 +290,7 @@ function mediaFactory(data, profilid, name, i) {
 		price,
 		getPhotoCardDOM,
 		getLighboxDOM,
+		gettotalLikes,
+		addorremoveLikes,
 	};
 }

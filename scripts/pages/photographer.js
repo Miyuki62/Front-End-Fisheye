@@ -16,6 +16,7 @@ async function displayData(photographers) {
 	const photographersHeaderright = document.querySelector(
 		".photograph-header-flexbox-right"
 	);
+	const priceadd = document.querySelector(".price-text");
 
 	const photographersimg = document.querySelector(".photograph-image");
 	//recupere l'id de l'url
@@ -30,9 +31,11 @@ async function displayData(photographers) {
 			const userCardDOM = photographerModel.getUserCardDOM();
 			photographersHeaderleft.appendChild(userCardDOM);
 
-			const photographerModelimg = profilFactory(photographer, profilid);
-			const userCardDOM2 = photographerModelimg.getUserCardDOM2();
+			const userCardDOM2 = photographerModel.getUserCardDOM2();
 			photographersHeaderright.appendChild(userCardDOM2);
+
+			const Encard2DOM = photographerModel.getpriceCardDOM();
+			priceadd.appendChild(Encard2DOM);
 		}
 	});
 }
@@ -41,6 +44,7 @@ async function displayData(photographers) {
 async function displayPhoto(media) {
 	const photographersMedia = document.querySelector(".photograph-media");
 	const imgmodalcontent = document.querySelector(".imgmodal-content");
+	const totalliketext = document.querySelector(".totallike-text");
 	var sort = document.querySelector("select");
 
 	let url_str = document.URL;
@@ -49,6 +53,8 @@ async function displayPhoto(media) {
 	let profilid = search_params.get("id");
 	let name = search_params.get("name");
 	let i = 1;
+	let o = 0;
+	let numLikes = new Number();
 
 	if (sort.options[0].selected === true) {
 		media.sort(sortByProperty("likes"));
@@ -68,12 +74,25 @@ async function displayPhoto(media) {
 
 	media.forEach((media) => {
 		if (media.photographerId == profilid) {
-			const photoMedia = mediaFactory(media, profilid, name, i);
+			numLikes += media.likes;
+		}
+	});
+
+	media.forEach((media) => {
+		if (media.photographerId == profilid) {
+			const photoMedia = mediaFactory(media, profilid, name, i, numLikes);
 			i++;
 			const PhotoCardDOM = photoMedia.getPhotoCardDOM();
 			photographersMedia.appendChild(PhotoCardDOM);
+
 			const PhotoshowDOM = photoMedia.getLighboxDOM();
 			imgmodalcontent.appendChild(PhotoshowDOM);
+
+			if (o < 1) {
+				const LiketotalDOM = photoMedia.gettotalLikes();
+				totalliketext.appendChild(LiketotalDOM);
+				o++;
+			}
 		}
 	});
 }
@@ -89,6 +108,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function () {
 		}
 	}
 };
+
 //surprime la class demander du dom
 function removeclass(classname) {
 	document.getElementsByClassName(classname).remove();

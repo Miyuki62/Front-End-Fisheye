@@ -74,6 +74,16 @@
 .control {
 	margin-left: 6.5em;
 }
+select {
+	background-color: #901c1c;
+	font-size: 1rem;
+	padding: 2px 5px;
+	width: 10rem;
+	height: 3rem;
+	color: white;
+	border: none;
+	border-radius: 5px;
+}
 /**
   * photo
   */
@@ -98,17 +108,50 @@
 	flex-direction: column;
 }
 
-.photograph-media article p {
-	color: #d3573c;
-	font-size: 20px;
-}
-
 .mediaimg {
 	width: 300px;
 	height: 300px;
 	object-fit: cover;
 }
-
+.titlepriceflex {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+}
+.titlepriceflex p {
+	color: #901c1c;
+	font-size: 18px;
+}
+.titlepriceflex i {
+	color: #901c1c;
+	display: flex;
+	gap: 5px;
+}
+.likeflex {
+	color: #901c1c;
+	display: flex;
+	gap: 5px;
+}
+/**
+  * text like et prix
+  */
+.photograph-priceandtotallike {
+	color: black;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	background: #d3573c;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+.conteurflex {
+	display: flex;
+	gap: 5px;
+}
 /**
   * modal
   */
