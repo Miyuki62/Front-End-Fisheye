@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
 	var input = document.getElementById("sort");
 	if (localStorage["sort"]) {
-		// if job is set
-		input.value = localStorage["sort"]; // set the value
+		// si sort et changer
+		input.value = localStorage["sort"]; // met la valeur dans le localStorage
 	}
 	input.onchange = function () {
-		localStorage["sort"] = this.value; // change localStorage on change
+		localStorage["sort"] = this.value; // charge la valeur du localStorage
 		location.reload();
 	};
 });

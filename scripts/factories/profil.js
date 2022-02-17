@@ -122,13 +122,17 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				const likeflex = document.createElement("div");
 				const like = document.createElement("i");
 				const likeplacement = document.createElement("span");
-				//const a = document.createElement("a");
+				const a = document.createElement("a");
 				//
 				vid.setAttribute("title", title);
 				vid.setAttribute("src", videos);
 				vid.setAttribute("type", "video/mp4");
-				vid.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
+				vid.setAttribute(
+					"onclick",
+					"openimgModal();showimg(" + "this.id" + ")"
+				);
 				vid.setAttribute("class", "mediaimg");
+				vid.setAttribute("id", i);
 				vid.setAttribute("aria-label", "lien vers " + title);
 				//
 				div.setAttribute("class", "titlepriceflex");
@@ -140,15 +144,15 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
-				like.setAttribute("id", i);
+				like.setAttribute("id", id);
 				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
 				//
 				likeplacement.setAttribute("class", "fas fa-heart");
 				//
-				//a.setAttribute("href", "#");
-				//a.setAttribute("onClick", "return false;");
+				a.setAttribute("href", "#");
+				a.setAttribute("onClick", "return false;");
 				//
-				//article.appendChild(a);
+				article.appendChild(a);
 				article.appendChild(vid);
 				article.appendChild(div);
 				div.appendChild(titles);
@@ -173,21 +177,23 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				//
 				img.setAttribute("alt", title);
 				img.setAttribute("src", picture);
-				img.setAttribute("onclick", "openimgModal();currentSlide(" + i + ")");
+				img.setAttribute(
+					"onclick",
+					"openimgModal();showimg(" + "this.id" + ")"
+				);
+				img.setAttribute("id", i);
 				img.setAttribute("class", "mediaimg");
 				//
 				div.setAttribute("class", "titlepriceflex");
 				//
 				titles.textContent = title;
 				//
-				like.setAttribute("class", "likeadd");
-				//
 				likeflex.setAttribute("class", "likeflex");
 				//
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
-				like.setAttribute("id", i);
+				like.setAttribute("id", id);
 				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
 				//
 				likeplacement.setAttribute("class", "fas fa-heart");

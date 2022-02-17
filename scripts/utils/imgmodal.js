@@ -1,7 +1,6 @@
 function openimgModal() {
 	document.getElementById("imgModal").style.display = "block";
 }
-
 function closeimgModal() {
 	document.getElementById("imgModal").style.display = "none";
 }
@@ -12,10 +11,15 @@ showSlides(slideIndex);
 function plusSlides(n) {
 	showSlides((slideIndex += n));
 }
-
 function currentSlide(n) {
 	showSlides((slideIndex = n));
 }
+function showimg(n) {
+	const Element = document.getElementById(n);
+	console.log(Element.id);
+	currentSlide(Element.id);
+}
+
 //control au clavier
 document.addEventListener("keydown", function (ev) {
 	if (ev.keyCode === 37) {
@@ -30,7 +34,7 @@ document.addEventListener("keydown", function (ev) {
 	} else if (ev.keyCode === 13) {
 		//enter key
 		openimgModal();
-		plusSlides(0);
+		showimg(3);
 	}
 });
 
