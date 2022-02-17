@@ -10,33 +10,39 @@ showSlides(slideIndex);
 
 function plusSlides(n) {
 	showSlides((slideIndex += n));
+	console.log(slideIndex);
+}
+function minusSlides(n) {
+	showSlides((slideIndex -= n));
+	console.log(slideIndex);
 }
 function currentSlide(n) {
 	showSlides((slideIndex = n));
-}
-function showimg(n) {
-	const Element = document.getElementById(n);
-	console.log(Element.id);
-	currentSlide(Element.id);
 }
 
 //control au clavier
 document.addEventListener("keydown", function (ev) {
 	if (ev.keyCode === 37) {
 		//Left arrow
-		plusSlides(-1);
+		minusSlides(1);
 	} else if (ev.keyCode === 39) {
 		//Right arrow
 		plusSlides(1);
 	} else if (ev.keyCode === 27) {
 		//esc key
 		closeimgModal();
-	} else if (ev.keyCode === 13) {
-		//enter key
-		openimgModal();
-		showimg(3);
 	}
 });
+
+function keyboardselectimg(event, id) {
+	console.log(id);
+	let code = event.keyCode || event.which;
+	if (code === 13) {
+		//enter key
+		openimgModal();
+		currentSlide(id);
+	}
+}
 
 function showSlides(n) {
 	var i;

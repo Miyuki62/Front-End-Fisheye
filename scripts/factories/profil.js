@@ -129,7 +129,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				vid.setAttribute("type", "video/mp4");
 				vid.setAttribute(
 					"onclick",
-					"openimgModal();showimg(" + "this.id" + ")"
+					"openimgModal();currentSlide(" + "this.id" + ")"
 				);
 				vid.setAttribute("class", "mediaimg");
 				vid.setAttribute("id", i);
@@ -151,6 +151,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				//
 				a.setAttribute("href", "#");
 				a.setAttribute("onClick", "return false;");
+				a.setAttribute("onkeypress", "keyboardselectimg(event, " + i + ")");
 				//
 				article.appendChild(a);
 				article.appendChild(vid);
@@ -174,12 +175,13 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				//
 				a.setAttribute("href", "#");
 				a.setAttribute("onClick", "return false;");
+				a.setAttribute("onkeypress", "keyboardselectimg(event, " + i + ")");
 				//
 				img.setAttribute("alt", title);
 				img.setAttribute("src", picture);
 				img.setAttribute(
 					"onclick",
-					"openimgModal();showimg(" + "this.id" + ")"
+					"openimgModal();currentSlide(" + "this.id" + ")"
 				);
 				img.setAttribute("id", i);
 				img.setAttribute("class", "mediaimg");
@@ -226,16 +228,20 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 		if (extension == undefined) {
 			const div = document.createElement("div");
 			const vid = document.createElement("video");
+			const sourcevideo = document.createElement("source");
 			const alt = document.createElement("p");
 			//
 			div.setAttribute("class", "mySlides");
 			vid.setAttribute("alt", title);
-			vid.setAttribute("src", videos);
-			vid.setAttribute("type", "video/mp4");
+			vid.setAttribute("controls", "");
+			//
+			sourcevideo.setAttribute("src", videos);
+			sourcevideo.setAttribute("type", "video/mp4");
 			//
 			alt.textContent = title;
 			//
 			div.appendChild(vid);
+			vid.appendChild(sourcevideo);
 			div.appendChild(alt);
 			//
 			return div;
@@ -281,10 +287,6 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 		}
 	}
 
-	function addorremoveLikes() {
-		ddd;
-	}
-
 	return {
 		id,
 		photographerId,
@@ -297,6 +299,5 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 		getPhotoCardDOM,
 		getLighboxDOM,
 		gettotalLikes,
-		addorremoveLikes,
 	};
 }

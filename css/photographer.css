@@ -88,7 +88,7 @@ select {
   * photo
   */
 .photograph-media a:focus {
-	box-shadow: 0 0px 8px green;
+	box-shadow: 8px 0px 8px red;
 }
 
 .photograph-media {
@@ -177,7 +177,7 @@ select {
 	display: none;
 	position: fixed;
 	z-index: 1;
-	padding-top: 100px;
+	padding-top: 0px;
 	left: 0;
 	top: 0;
 	width: 100%;
@@ -229,13 +229,13 @@ form div {
 	flex-direction: column;
 	width: 100%;
 	align-items: self-start;
-	margin-bottom: 26px;
+	margin-bottom: 0.2rem;
 }
 
 form input {
 	width: 100%;
 	font-size: 2rem;
-	height: 68px;
+	height: 2.2rem;
 	border: none;
 	border-radius: 5px;
 }

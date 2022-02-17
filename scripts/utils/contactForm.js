@@ -8,6 +8,13 @@ function closeModal() {
 	modal.style.display = "none";
 }
 
+document.addEventListener("keydown", function (ev) {
+	if (ev.keyCode === 27) {
+		//esc key
+		closeModal();
+	}
+});
+
 //form const verification
 const form = document.getElementById("form");
 const first = document.getElementById("first");
