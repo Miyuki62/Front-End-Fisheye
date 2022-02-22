@@ -96,6 +96,17 @@ async function displayPhoto(media) {
 		}
 	});
 }
+//ajout du nom dans la modal
+async function displayPhotoNameModal() {
+	const element = document.querySelector("#modal-photo-name");
+	//
+	let url_str = document.URL;
+	let url = new URL(url_str);
+	let search_params = url.searchParams;
+	let name = search_params.get("name");
+	//
+	element.textContent = name;
+}
 
 //gestion des supression des inutile ou de se que on demande
 Element.prototype.remove = function () {
@@ -124,6 +135,7 @@ async function init() {
 	const { media } = await getPhotographers();
 	displayData(photographers);
 	displayPhoto(media);
+	displayPhotoNameModal();
 	//surprime les article en trop
 	removeclass("supp");
 }

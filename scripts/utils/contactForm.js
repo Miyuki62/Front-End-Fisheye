@@ -1,11 +1,20 @@
 function displayModal() {
 	const modal = document.getElementById("contact_modal");
+	const main = document.getElementById("main");
 	modal.style.display = "block";
+
+	main.setAttribute("class", "disabled");
+	main.setAttribute("tabindex", "-1");
+	main.setAttribute("aria-hidden", "true");
 }
 
 function closeModal() {
 	const modal = document.getElementById("contact_modal");
+	const main = document.getElementById("main");
 	modal.style.display = "none";
+	main.removeAttribute("class");
+	main.removeAttribute("tabindex");
+	main.setAttribute("aria-hidden", "false");
 }
 
 document.addEventListener("keydown", function (ev) {

@@ -122,7 +122,6 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				const likeflex = document.createElement("div");
 				const like = document.createElement("i");
 				const likeplacement = document.createElement("span");
-				const a = document.createElement("a");
 				//
 				vid.setAttribute("title", title);
 				vid.setAttribute("src", videos);
@@ -131,6 +130,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 					"onclick",
 					"openimgModal();currentSlide(" + "this.id" + ")"
 				);
+				vid.setAttribute("onkeypress", "keyboardselectimg(event, " + i + ")");
 				vid.setAttribute("class", "mediaimg");
 				vid.setAttribute("id", i);
 				vid.setAttribute("aria-label", "lien vers " + title);
@@ -140,20 +140,20 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				titles.textContent = title;
 				//
 				likeflex.setAttribute("class", "likeflex");
+				likeflex.setAttribute("onclick", "addlike(" + id + ")");
+				likeflex.setAttribute(
+					"onkeypress",
+					"keyboardaddlike(event, " + id + ")"
+				);
 				//
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
 				like.setAttribute("id", id);
-				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
+				like.setAttribute("tabindex", "0");
 				//
-				likeplacement.setAttribute("class", "fas fa-heart");
+				likeplacement.setAttribute("class", "far fa-heart");
 				//
-				a.setAttribute("href", "#");
-				a.setAttribute("onClick", "return false;");
-				a.setAttribute("onkeypress", "keyboardselectimg(event, " + i + ")");
-				//
-				article.appendChild(a);
 				article.appendChild(vid);
 				article.appendChild(div);
 				div.appendChild(titles);
@@ -165,7 +165,6 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 			} else {
 				//regarde si oui il les ajoute au document
 				const article = document.createElement("article");
-				const a = document.createElement("a");
 				const img = document.createElement("img");
 				const div = document.createElement("div");
 				const titles = document.createElement("p");
@@ -173,9 +172,10 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				const like = document.createElement("i");
 				const likeplacement = document.createElement("span");
 				//
-				a.setAttribute("href", "#");
-				a.setAttribute("onClick", "return false;");
-				a.setAttribute("onkeypress", "keyboardselectimg(event, " + i + ")");
+				article.setAttribute(
+					"onkeypress",
+					"keyboardselectimg(event, " + i + ")"
+				);
 				//
 				img.setAttribute("alt", title);
 				img.setAttribute("src", picture);
@@ -191,17 +191,21 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				titles.textContent = title;
 				//
 				likeflex.setAttribute("class", "likeflex");
+				likeflex.setAttribute("onclick", "addlike(" + id + ")");
+				likeflex.setAttribute(
+					"onkeypress",
+					"keyboardaddlike(event, " + id + ")"
+				);
 				//
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
 				like.setAttribute("id", id);
-				like.setAttribute("onclick", "addlike(" + "this.id" + ")");
+				like.setAttribute("tabindex", "0");
 				//
-				likeplacement.setAttribute("class", "fas fa-heart");
+				likeplacement.setAttribute("class", "far fa-heart");
 				//
-				article.appendChild(a);
-				a.appendChild(img);
+				article.appendChild(img);
 				article.appendChild(div);
 				div.appendChild(titles);
 				div.appendChild(likeflex);

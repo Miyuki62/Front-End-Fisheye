@@ -35,7 +35,6 @@ document.addEventListener("keydown", function (ev) {
 });
 
 function keyboardselectimg(event, id) {
-	console.log(id);
 	let code = event.keyCode || event.which;
 	if (code === 13) {
 		//enter key

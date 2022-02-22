@@ -87,9 +87,6 @@ select {
 /**
   * photo
   */
-.photograph-media a:focus {
-	box-shadow: 8px 0px 8px red;
-}
 
 .photograph-media {
 	display: grid;
@@ -107,11 +104,15 @@ select {
 	justify-self: center;
 	flex-direction: column;
 }
+.photograph-media article:focus {
+	box-shadow: 8px 0px 8px red;
+}
 
 .mediaimg {
 	width: 300px;
 	height: 300px;
 	object-fit: cover;
+	cursor: pointer;
 }
 .titlepriceflex {
 	display: flex;
@@ -195,11 +196,16 @@ select {
 	justify-content: space-between;
 	padding: 35px;
 	margin: auto;
+	box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.5);
 }
 
 .modal header {
 	justify-content: space-between;
 	width: 100%;
+	margin-bottom: 40px;
+}
+#modal-photo-name {
+	margin-top: -50px;
 }
 
 .modal header img {

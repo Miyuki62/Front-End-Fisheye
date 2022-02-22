@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang"fr-FR">
+<html xml:lang="fr" lang="fr">
 	<head>
 		<link href="css/style.css" rel="stylesheet" type="text/css" />
 		<link href="css/normalize.css" rel="stylesheet" type="text/css" />
@@ -18,7 +18,17 @@
 			<img src="assets/images/logo.png" alt="logo fishey" class="logo" />
 		</a>
 		</header>
-		<main id="main">
+		<main id="main" aria-hidden="false">
+		<!-- The Modal/Lightbox -->
+			<div id="imgModal" class="imgModal">
+				<span  tabindex="0" class="close cursor" onclick="closeimgModal()" aria-label="Close dialog">&times;</span>
+				<div class="imgmodal-content">
+
+					<!-- Next/previous controls -->
+					<a  tabindex="0" class="prev" role="button" onclick="minusSlides(1)" aria-label="Previous image">&#10094;</a>
+					<a  tabindex="0" class="next" role="button" onclick="plusSlides(1)" aria-label="Next image">&#10095;</a>
+				</div>
+			</div>
 			<div class="photograph-header">
 				<div class="photograph-header-flexbox">
 					<div class="photograph-header-flexbox-left">
@@ -36,7 +46,8 @@
 					</div>
 				</div>
 			</div>
-			 	<div class="control">trier par :
+			 	<div class="control">
+				 	<label for="sort">trier par :</label>
 					<select name="sort" id="sort" aria-label="Sélection de l'ordre de trie">
 						<option value="Popularité">Popularité</option>
 						<option value="Date">Date</option>
@@ -49,66 +60,64 @@
 				<div class="totallike-text"></div>
 				<div class="price-text"></div>
 			</div>
-			<!-- The Modal/Lightbox -->
-			<div id="imgModal" class="imgModal">
-				<span class="close cursor" onclick="closeimgModal()" aria-label="Close dialog">&times;</span>
-				<div class="imgmodal-content">
-
-					<!-- Next/previous controls -->
-					<a class="prev" role="button" onclick="minusSlides(1)" aria-label="Previous image">&#10094;</a>
-					<a class="next" role="button" onclick="plusSlides(1)" aria-label="Next image">&#10095;</a>
+		</main>
+			<div id="contact_modal" role="dialog" aria-modal="true">
+				<div class="modal">
+					<header>
+						<div id="ModalHeaderText">
+							<h2>Contactez-moi</h2>
+							<h2 id="modal-photo-name"></h2>
+						</div>
+						<img src="assets/icons/close.svg" alt="fermer le formulaire" onclick="closeModal()" />
+					</header>
+					<form
+						id="form"
+						name="reserve"
+						action="index.html"
+						method="get"
+						onsubmit="return validate();"
+					>
+						<div>
+							<label for="first">Prénom</label><br />
+							<input
+								class="text-control"
+								type="text"
+								id="first"
+								name="first"
+							/><br />
+							<div id="first-error-msg"></div>
+						</div>
+						<div class="formData">
+							<label for="last">Nom</label><br />
+							<input
+								class="text-control"
+								type="text"
+								id="last"
+								name="last"
+							/><br />
+						</div>
+						<div id="last-error-msg"></div>
+						<div class="formData">
+							<label for="email">E-mail</label><br />
+							<input
+								class="text-control"
+								type="email"
+								id="email"
+								name="email"
+							/><br />
+						</div>
+						<div id="email-error-msg"></div>
+						<div class="formData">
+							<label for="msg">Votre message</label><br />
+							<textarea name="msg" id="msg" required></textarea>
+						</div>
+						<div id="msg-error-msg"></div>
+						<button class="contact_button" type="submit" class="btn-submit">
+							Envoyer
+						</button>
+					</form>
 				</div>
 			</div>
-		</main>
-		<div id="contact_modal">
-			<div class="modal">
-				<header>
-					<h2>Contactez-moi</h2>
-					<img src="assets/icons/close.svg" onclick="closeModal()" />
-				</header>
-				<form
-					id="form"
-					name="reserve"
-					action="index.html"
-					method="get"
-					onsubmit="return validate();"
-				>
-					<div>
-						<label for="first">Prénom</label><br />
-						<input
-							class="text-control"
-							type="text"
-							id="first"
-							name="first"
-						/><br />
-						<div id="first-error-msg"></div>
-					</div>
-					<div class="formData">
-						<label for="last">Nom</label><br />
-						<input
-							class="text-control"
-							type="text"
-							id="last"
-							name="last"
-						/><br />
-					</div>
-					<div id="last-error-msg"></div>
-					<div class="formData">
-						<label for="email">E-mail</label><br />
-						<input
-							class="text-control"
-							type="email"
-							id="email"
-							name="email"
-						/><br />
-					</div>
-					<div id="email-error-msg"></div>
-					<button class="contact_button" type="submit" class="btn-submit">
-						Envoyer
-					</button>
-				</form>
-			</div>
-		</div>
 		<script src="scripts/factories/profil.js"></script>
 		<script src="scripts/pages/photographer.js"></script>
 		<script src="scripts/utils/contactForm.js"></script>
