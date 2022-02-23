@@ -31,13 +31,13 @@ const header = document.getElementById("ModalHeaderText");
 const first = document.getElementById("first");
 const last = document.getElementById("last");
 const mail = document.getElementById("email");
-const msg = document.getElementById("msg");
+const message = document.getElementById("message");
 
 //const affichage erreur
 const firstErrorMsg = document.getElementById("first-error-msg");
 const lastErrorMsg = document.getElementById("last-error-msg");
 const mailErrorMsg = document.getElementById("email-error-msg");
-const msgErrorMsg = document.getElementById("msg-error-msg");
+const messageErrorMsg = document.getElementById("message-error-msg");
 
 //empeche l'action par defaut du bouton submit
 form.addEventListener("submit", (e) => {
@@ -48,7 +48,7 @@ function validate() {
 	let firstChecked;
 	let lastChecked;
 	let emailChecked;
-	let msgChecked;
+	let messageChecked;
 
 	//form verifie que le prénom possède bien 2 caractères et que se soit bien des lettre
 	if (
@@ -109,23 +109,32 @@ function validate() {
 		emailChecked = true;
 	}
 	//form verifie que le message ne soit pas vide
-	if (!msg.value == " ") {
+	if (
+		!message.value.match(/(.*[a-z]){2}/i) ||
+		message.value == " " ||
+		message.value.length < 1
+	) {
 		//si non affiche les erreur
-		msgErrorMsg.innerText = "Veuillez entrer un message";
-		msgErrorMsg.style.color = "#691616";
-		msgErrorMsg.style.fontSize = "2rem";
-		msgErrorMsg.style.marginTop = "10px";
-		msg.style.border = "solid #691616 2px";
-		msgErrorMsg.style.display = "block";
-		msgChecked = false;
+		messageErrorMsg.innerText = "Veuillez entrer un message";
+		messageErrorMsg.style.color = "#691616";
+		messageErrorMsg.style.fontSize = "2rem";
+		messageErrorMsg.style.marginTop = "10px";
+		message.style.border = "solid #691616 2px";
+		messageErrorMsg.style.display = "block";
+		messageChecked = false;
 	} else {
 		//si oui enlève les erreur
-		msgErrorMsg.style.display = "none";
-		msg.style.border = "none";
-		msgChecked = true;
+		messageErrorMsg.style.display = "none";
+		message.style.border = "none";
+		messageChecked = true;
 	}
 	//verifie que chaque champ du formulaire est valide
-	if (firstChecked == true && lastChecked == true && emailChecked == true) {
+	if (
+		firstChecked == true &&
+		lastChecked == true &&
+		emailChecked == true &&
+		messageChecked == true
+	) {
 		form.style.display = "none";
 		header.style.display = "none";
 		valid.style.display = "flex";
@@ -138,7 +147,7 @@ function validate() {
 				"\nEmail : " +
 				email.value +
 				"\nMessage : " +
-				msg.value
+				message.value
 		);
 	}
 }
