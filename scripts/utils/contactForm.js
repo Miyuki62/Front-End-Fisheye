@@ -1,8 +1,9 @@
 function displayModal() {
 	const modal = document.getElementById("contact_modal");
 	const main = document.getElementById("main");
+	const first = document.getElementById("first");
 	modal.style.display = "block";
-
+	first.focus();
 	main.setAttribute("class", "disabled");
 	main.setAttribute("tabindex", "-1");
 	main.setAttribute("aria-hidden", "true");
@@ -26,14 +27,17 @@ document.addEventListener("keydown", function (ev) {
 
 //form const verification
 const form = document.getElementById("form");
+const header = document.getElementById("ModalHeaderText");
 const first = document.getElementById("first");
 const last = document.getElementById("last");
 const mail = document.getElementById("email");
+const msg = document.getElementById("msg");
 
 //const affichage erreur
 const firstErrorMsg = document.getElementById("first-error-msg");
 const lastErrorMsg = document.getElementById("last-error-msg");
 const mailErrorMsg = document.getElementById("email-error-msg");
+const msgErrorMsg = document.getElementById("msg-error-msg");
 
 //empeche l'action par defaut du bouton submit
 form.addEventListener("submit", (e) => {
@@ -44,6 +48,7 @@ function validate() {
 	let firstChecked;
 	let lastChecked;
 	let emailChecked;
+	let msgChecked;
 
 	//form verifie que le prénom possède bien 2 caractères et que se soit bien des lettre
 	if (
@@ -103,9 +108,37 @@ function validate() {
 		mail.style.border = "none";
 		emailChecked = true;
 	}
+	//form verifie que le message ne soit pas vide
+	if (!msg.value == " ") {
+		//si non affiche les erreur
+		msgErrorMsg.innerText = "Veuillez entrer un message";
+		msgErrorMsg.style.color = "#691616";
+		msgErrorMsg.style.fontSize = "2rem";
+		msgErrorMsg.style.marginTop = "10px";
+		msg.style.border = "solid #691616 2px";
+		msgErrorMsg.style.display = "block";
+		msgChecked = false;
+	} else {
+		//si oui enlève les erreur
+		msgErrorMsg.style.display = "none";
+		msg.style.border = "none";
+		msgChecked = true;
+	}
 	//verifie que chaque champ du formulaire est valide
 	if (firstChecked == true && lastChecked == true && emailChecked == true) {
 		form.style.display = "none";
+		header.style.display = "none";
 		valid.style.display = "flex";
+		//affiche les champ dans la console
+		console.log(
+			"Prénom : " +
+				first.value +
+				"\nNom : " +
+				last.value +
+				"\nEmail : " +
+				email.value +
+				"\nMessage : " +
+				msg.value
+		);
 	}
 }

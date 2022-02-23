@@ -61,12 +61,15 @@
 				<div class="price-text"></div>
 			</div>
 		</main>
-			<div id="contact_modal" role="dialog" aria-modal="true">
-				<div class="modal">
+			<div id="contact_modal">
+				<div class="modal" role="dialog" aria-modal="true" tabindex="-1">
 					<header>
 						<div id="ModalHeaderText">
 							<h2>Contactez-moi</h2>
 							<h2 id="modal-photo-name"></h2>
+						</div>
+						<div id="valid">
+							<h1>Votre Message a bien été prise en compte.</h1>
 						</div>
 						<img src="assets/icons/close.svg" alt="fermer le formulaire" onclick="closeModal()" />
 					</header>
@@ -109,7 +112,7 @@
 						<div id="email-error-msg"></div>
 						<div class="formData">
 							<label for="msg">Votre message</label><br />
-							<textarea name="msg" id="msg" required></textarea>
+							<textarea name="msg" id="msg" rows="5" cols="72" required></textarea>
 						</div>
 						<div id="msg-error-msg"></div>
 						<button class="contact_button" type="submit" class="btn-submit">
