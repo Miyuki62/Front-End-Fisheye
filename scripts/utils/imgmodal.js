@@ -9,11 +9,11 @@ var slideIndex = 1;
 showSlides(slideIndex);
 
 function plusSlides(n) {
-	showSlides((slideIndex += n));
+	showSlides(slideIndex++);
 	console.log(slideIndex);
 }
 function minusSlides(n) {
-	showSlides((slideIndex -= n));
+	showSlides(slideIndex--);
 	console.log(slideIndex);
 }
 function currentSlide(n) {

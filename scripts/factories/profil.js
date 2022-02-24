@@ -151,12 +151,12 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 					"onkeypress",
 					"keyboardaddlike(event, " + id + ")"
 				);
+				likeflex.setAttribute("tabindex", "0");
 				//
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
 				like.setAttribute("id", id);
-				like.setAttribute("tabindex", "0");
 				//
 				likeplacement.setAttribute("class", "far fa-heart");
 				//
@@ -205,12 +205,12 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 					"onkeypress",
 					"keyboardaddlike(event, " + id + ")"
 				);
+				likeflex.setAttribute("tabindex", "0");
 				//
 				like.textContent = likes;
 				like.setAttribute("aria-label", "likes");
 				like.setAttribute("class", "likeadd");
 				like.setAttribute("id", id);
-				like.setAttribute("tabindex", "0");
 				//
 				likeplacement.setAttribute("class", "far fa-heart");
 				//

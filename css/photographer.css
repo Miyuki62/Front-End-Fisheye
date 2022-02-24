@@ -104,10 +104,9 @@ select {
 	justify-self: center;
 	flex-direction: column;
 }
-.photograph-media article:focus {
-	box-shadow: 8px 0px 8px red;
+.photograph-media div:focus {
+	outline: 3px solid black;
 }
-
 .mediaimg {
 	width: 300px;
 	height: 300px;
@@ -145,7 +144,7 @@ select {
 	position: fixed;
 	bottom: 20px;
 	right: 20px;
-	background: #d3573c;
+	background: #db8876;
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -169,10 +168,10 @@ select {
 	cursor: pointer;
 }
 .contact_button:focus {
-	background-color: #d3573c;
+	background-color: #db8876;
 }
 .contact_button:hover {
-	background-color: #d3573c;
+	background-color: #db8876;
 }
 #contact_modal {
 	display: none;
