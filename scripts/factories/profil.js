@@ -3,7 +3,7 @@ function profilFactory(data, profilid) {
 	const { name, id, portrait, city, country, tagline, price } = data;
 
 	const picture = `assets/photographers/${portrait}`;
-	//info principal
+	//info principal du photograph pour la page photograph
 	function getUserCardDOM() {
 		//regarde si l'id correspond a celui de la page
 		if (id == profilid) {
@@ -37,7 +37,7 @@ function profilFactory(data, profilid) {
 			return article;
 		}
 	}
-	//photo de profil
+	//photo de profil pour la page photograph
 	function getUserCardDOM2() {
 		//regarde si l'id correspond a celui de la page
 		if (id == profilid) {
@@ -114,7 +114,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 			let extension = getExtension(filename);
 			//check l'extension pour verifier que c'est une video
 			if (extension == undefined) {
-				//si oui on change la methode de creation
+				//si oui on change la methode de creation via video au lieux de image
 				const article = document.createElement("article");
 				const vid = document.createElement("video");
 				const divvid = document.createElement("div");
@@ -170,7 +170,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				//
 				return article;
 			} else {
-				//regarde si oui il les ajoute au document
+				//regarde si non il les ajoute au document avec le tag image au lieux de video
 				const article = document.createElement("article");
 				const divimg = document.createElement("div");
 				const img = document.createElement("img");
@@ -225,7 +225,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 				return article;
 			}
 		} else {
-			//regarde si non il ajoute un article en display none pour eviter les erreur
+			//si article ne correspond pas a l'id crée un article qui sera supprimer pour eviter les erreur
 			const article = document.createElement("article");
 			//
 			article.setAttribute("style", "display:none");
@@ -234,7 +234,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 			return article;
 		}
 	}
-
+	//gestion de la lighbox
 	function getLighboxDOM() {
 		let filename = image;
 		let extension = getExtension(filename);
@@ -277,7 +277,7 @@ function mediaFactory(data, profilid, name, i, numLikes) {
 			return div;
 		}
 	}
-
+	//crée la div avec le total dans le coin bas droit de la page
 	function gettotalLikes() {
 		//
 		if (photographerId == profilid) {

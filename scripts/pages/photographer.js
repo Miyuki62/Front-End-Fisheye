@@ -26,6 +26,7 @@ async function displayData(photographers) {
 	let profilid = search_params.get("id");
 
 	photographers.forEach((photographer) => {
+		// vérifie l'id du photographe avec celui de la page puis crée la partie profil du photograph qui correspond a l'id
 		if (photographer.id == profilid) {
 			const photographerModel = profilFactory(photographer, profilid);
 			const userCardDOM = photographerModel.getUserCardDOM();
@@ -46,7 +47,7 @@ async function displayPhoto(media) {
 	const imgmodalcontent = document.querySelector(".imgmodal-content");
 	const totalliketext = document.querySelector(".totallike-text");
 	var sort = document.querySelector("select");
-
+	// recupere l'id et le nom du photograph depuis l'url
 	let url_str = document.URL;
 	let url = new URL(url_str);
 	let search_params = url.searchParams;
@@ -55,7 +56,7 @@ async function displayPhoto(media) {
 	let i = 1;
 	let o = 0;
 	let numLikes = new Number();
-
+	// scrip pour trier les media par like, date et titre
 	if (sort.options[0].selected === true) {
 		media.sort(sortByProperty("likes"));
 		function sortByProperty(property) {
@@ -71,13 +72,13 @@ async function displayPhoto(media) {
 	} else if (sort.options[2].selected === true) {
 		media.sort((a, b) => a.title.localeCompare(b.title));
 	}
-
+	// add les like du photograph
 	media.forEach((media) => {
 		if (media.photographerId == profilid) {
 			numLikes += media.likes;
 		}
 	});
-
+	// vérifie l'id du photographe avec celui de la page puis crée la partie media du photograph qui correspond a l'id
 	media.forEach((media) => {
 		if (media.photographerId == profilid) {
 			const photoMedia = mediaFactory(media, profilid, name, i, numLikes);
@@ -136,7 +137,7 @@ async function init() {
 	displayData(photographers);
 	displayPhoto(media);
 	displayPhotoNameModal();
-	//surprime les article en trop
+	//surprime les article en trop si il en a
 	removeclass("supp");
 }
 

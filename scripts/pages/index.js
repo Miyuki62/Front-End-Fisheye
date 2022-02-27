@@ -7,7 +7,7 @@ async function getPhotographers() {
 		console.log(error);
 	}
 }
-
+// generation de la page index
 async function displayData(photographers) {
 	const photographersSection = document.querySelector(".photographer_section");
 
