@@ -312,6 +312,7 @@ form input {
 	color: #d3573c;
 	text-decoration: none;
 	cursor: pointer;
+	outline: 3px solid black;
 }
 
 /* Hide the slides by default */
@@ -369,4 +370,10 @@ form input {
 .prev:hover,
 .next:hover {
 	color: #d3573c;
+	outline: 3px solid black;
+}
+.prev:focus,
+.next:focus {
+	color: #d3573c;
+	outline: 3px solid black;
 }
