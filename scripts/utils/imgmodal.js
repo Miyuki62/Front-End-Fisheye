@@ -1,10 +1,14 @@
 function openimgModal() {
+	const close = document.getElementById("closecursorimg");
 	document.getElementById("imgModal").style.display = "block";
+	close.focus();
+	main.setAttribute("class", "disabled");
+	main.setAttribute("tabindex", "-1");
+	main.setAttribute("aria-hidden", "true");
 }
 function closeimgModal() {
 	document.getElementById("imgModal").style.display = "none";
 }
-
 var slideIndex = 1;
 showSlides(slideIndex);
 
